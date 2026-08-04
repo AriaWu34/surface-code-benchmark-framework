@@ -1,5 +1,9 @@
 # Surface Code Benchmark Framework
 
+[![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Tests](https://github.com/AriaWu34/surface-code-benchmark-framework/actions/workflows/tests.yml/badge.svg)](https://github.com/AriaWu34/surface-code-benchmark-framework/actions/workflows/tests.yml)
+
+
 A modular Python framework for benchmarking quantum error correction using surface codes.
 
 The framework provides interchangeable simulation backends, decoding algorithms, experiment pipelines, analysis utilities, and visualization tools for studying the performance of quantum surface codes under configurable noise models.
@@ -181,11 +185,15 @@ The Stim backend provides
 
 ### Checkerboard
 
-An explicit first-principles implementation of a checkerboard surface code for validation and educational purposes.
+The checkerboard backend is an explicit first-principles implementation of a checkerboard surface-code memory experiment. Rather than relying on Stim's built-in circuit generators, it constructs the code directly from its fundamental components by explicitly defining the qubit layout, stabilizer measurements, repeated syndrome-extraction rounds, detector events, and logical observables.
+
+This checkerboard implementation emphasizes transparency and readability over completeness and performance. It serves as an educational reference and validation backend, demonstrating the underlying principles of surface-code construction while sharing the same benchmarking interface as the Stim backend.
 
 ### Qiskit
 
-A reference implementation demonstrating explicit circuit construction, configurable noise models, Aer simulation, and NetworkX-based MWPM decoding.
+The Qiskit backend is a lightweight reference implementation of a surface-code-inspired memory experiment using Qiskit and Aer. This implementation constructs simplified syndrome-extraction circuits with configurable depolarising and readout noise before performing MWPM decoding using the reference NetworkX decoder.
+
+The implementation is intended for demonstration and comparison, it illustrates how quantum error-correction experiments can be expressed using the Qiskit circuit model.
 
 ---
 
@@ -215,7 +223,7 @@ Threshold experiments estimate the logical error threshold by identifying the cr
 <p align="center">
   <img src="docs/images/threshold.png"
        alt="Threshold estimation"
-       width="750">
+       width="700">
 </p>
 
 ---
@@ -227,7 +235,7 @@ Distance-scaling experiments demonstrate the suppression of logical errors below
 <p align="center">
   <img src="docs/images/distance_scaling.png"
        alt="Distance scaling"
-       width="750">
+       width="700">
 </p>
 
 ---
@@ -239,7 +247,7 @@ Runtime benchmarks measure the computational cost of logical-memory simulations 
 <p align="center">
   <img src="docs/images/runtime.png"
        alt="Runtime benchmarking"
-       width="750">
+       width="700">
 </p>
 
 These experiments demonstrate how the framework can be used to evaluate both the logical performance and computational efficiency of different surface-code implementations under a common benchmarking workflow.
@@ -253,7 +261,7 @@ The framework supports direct comparison of rotated and unrotated surface-code i
 <p align="center">
   <img src="docs/images/lattice_comparison.png"
        alt="Rotated versus unrotated surface codes"
-       width="750">
+       width="700">
 </p>
 
 ---
@@ -281,3 +289,14 @@ The modular architecture is designed to support future extensions, including
 - correlated and biased noise models
 - circuit-level threshold studies
 - additional simulation backends
+
+---
+
+## References
+
+This framework builds upon the following software and research:
+
+- Craig Gidney, *Stim: A fast stabilizer circuit simulator*.
+- Oscar Higgott, *PyMatching 2: Sparse Blossom for quantum error correction*.
+- The Qiskit project for reference circuit construction and simulation.
+- Foundational work on topological quantum error correction and surface codes, including Dennis et al. (2002) and Fowler et al. (2012).
