@@ -135,19 +135,32 @@ Verify the installation.
 pytest
 ```
 
-Run a threshold experiment.
+For a guided introduction to the framework and its public API, open the interactive quick-start notebook:
+
+```text
+notebooks/quickstart.ipynb
+```
+
+The notebook demonstrates how to:
+
+- create a simulation backend,
+- estimate the logical failure rate of a surface-code memory experiment,
+- understand how benchmark experiments are organised,
+- inspect the generated figures and cached results.
+
+To run the benchmark scripts directly from the command line, for example:
 
 ```bash
 python experiments/stim/threshold.py
 ```
 
-Run a runtime benchmark.
+or
 
 ```bash
 python experiments/stim/runtime_benchmark.py
 ```
 
-Generated figures and cached CSV files are automatically written to the `results/` directory.
+Benchmark results are automatically written to the `results/` directory as figures (`.png`) and cached numerical data (`.csv`).
 
 ---
 
