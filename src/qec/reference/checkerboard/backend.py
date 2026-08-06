@@ -12,9 +12,9 @@ experimentation, validation, and education.
 """
 
 from qec.backends.base import Backend
+from qec.decoders import MWPMDecoder
 
 from .checkerboard_surface_code import CheckerboardSurfaceCode
-from qec.decoders import MWPMDecoder
 
 
 class CheckerboardBackend(Backend):

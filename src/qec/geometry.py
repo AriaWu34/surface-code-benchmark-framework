@@ -7,7 +7,6 @@ Shared by backends and decoders.
     
 from dataclasses import dataclass
 
-
 # ======================================================
 # Indexing
 # ======================================================

@@ -21,7 +21,6 @@ from qec.visualization import (
     plot_logical_failure_rate,
 )
 
-
 OUTPUT_DIR = Path(
     "results/stim/distance_scaling"
 )

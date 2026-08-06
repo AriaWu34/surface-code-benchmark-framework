@@ -11,9 +11,9 @@ import numpy as np
 import pandas as pd
 
 from qec.analysis.io import (
+    load_dataframe,
     save_dataframe,
     save_text,
-    load_dataframe,
     should_rerun,
 )
 from qec.analysis.threshold import (
@@ -22,7 +22,6 @@ from qec.analysis.threshold import (
 )
 from qec.backends.stim import StimBackend
 from qec.visualization import plot_threshold
-
 
 USE_CACHE = True
 

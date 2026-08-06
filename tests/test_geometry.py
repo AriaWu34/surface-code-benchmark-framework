@@ -1,13 +1,13 @@
 import pytest
 
 from qec.geometry import (
-    d_idx,
-    code_sizes,
-    manhattan,
     code_boundaries,
-    validate_distance,
+    code_sizes,
+    d_idx,
     generate_stabilizers,
+    manhattan,
     stabilizer_data_coordinates,
+    validate_distance,
 )
 
 

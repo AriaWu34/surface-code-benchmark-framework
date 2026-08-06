@@ -9,14 +9,12 @@ PyMatching for Minimum Weight Perfect Matching
 """
 
 from qec.backends.base import Backend
-
 from qec.backends.stim.rotated import (
     RotatedSurfaceCode,
 )
 from qec.backends.stim.unrotated import (
     UnrotatedSurfaceCode,
 )
-
 from qec.decoders import MWPMDecoder
 
 

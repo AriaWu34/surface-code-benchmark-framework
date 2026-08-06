@@ -17,9 +17,9 @@ from qec.geometry import (
     validate_distance,
 )
 
-from .helpers import HelperMixin
 from .circuit import CircuitMixin
 from .detectors import DetectorMixin
+from .helpers import HelperMixin
 
 
 class CheckerboardSurfaceCode(
@@ -92,14 +92,6 @@ class CheckerboardSurfaceCode(
     @property
     def n_qubits(self) -> int:
         return self.n_data + self.n_stabilizers
-
-    @property
-    def x_ancilla_start(self) -> int:
-        return self.n_data
-
-    @property
-    def z_ancilla_start(self) -> int:
-        return self.n_data + self.n_x
 
     @property
     def ancilla_indices(self) -> range:

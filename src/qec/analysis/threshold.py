@@ -10,10 +10,10 @@ results.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from itertools import pairwise
 
 import numpy as np
 import pandas as pd
-
 
 THRESHOLD_SEARCH_REGION = (
     0.005,
@@ -151,13 +151,12 @@ def estimate_threshold(
         logical_error_rates_by_distance
     )
 
-    pairwise = {}
+    crossings_by_pair = {}
 
     crossings = []
 
-    for d1, d2 in zip(
-        distances[:-1],
-        distances[1:],
+    for d1, d2 in pairwise(
+        distances,
     ):
 
         crossing = estimate_crossing(
@@ -166,7 +165,7 @@ def estimate_threshold(
             logical_error_rates_by_distance[d2],
         )
 
-        pairwise[(d1, d2)] = crossing
+        crossings_by_pair[(d1, d2)] = crossing
 
         if crossing is not None:
             crossings.append(crossing)
@@ -188,7 +187,7 @@ def estimate_threshold(
 
     return ThresholdEstimate(
         threshold=mean,
-        pairwise_crossings=pairwise,
+        pairwise_crossings=crossings_by_pair,
         mean=mean,
         std=std,
     )

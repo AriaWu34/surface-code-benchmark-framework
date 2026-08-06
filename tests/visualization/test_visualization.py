@@ -4,24 +4,24 @@ matplotlib.use("Agg")
 
 from pathlib import Path
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from qec.visualization.common import save_figure
-from qec.visualization.logical_failure import (
-    plot_distance_scaling,
-    plot_logical_failure_rate,
-)
 from qec.visualization.comparison import (
     plot_backend_comparison,
     plot_decoder_comparison,
     plot_lattice_comparison,
 )
-from qec.visualization.threshold import (
-    plot_threshold,
+from qec.visualization.logical_failure import (
+    plot_distance_scaling,
+    plot_logical_failure_rate,
 )
 from qec.visualization.runtime import (
     plot_runtime_scaling,
+)
+from qec.visualization.threshold import (
+    plot_threshold,
 )
 
 

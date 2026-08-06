@@ -22,7 +22,6 @@ from qec.visualization import (
     plot_decoder_comparison,
 )
 
-
 OUTPUT_DIR = Path(
     "results/reference/qiskit_decoder_strategy"
 )

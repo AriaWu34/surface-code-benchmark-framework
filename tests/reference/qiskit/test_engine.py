@@ -1,7 +1,6 @@
 import numpy as np
 
 from qec.reference.qiskit import engine
-
 from qec.reference.qiskit.engine import (
     logical_failure_rates_single,
     logical_failure_rates_spacetime,

@@ -6,17 +6,16 @@ Qiskit Aer and the reference NetworkX decoder.
 """
 
 import numpy as np
-
 from qiskit import transpile
 from qiskit_aer import AerSimulator
-
-from qec.reference.qiskit.circuit import k_rounds_surface_code
-from qec.reference.qiskit.noise import depol_noise_model
 
 from qec.decoders.mwpm.networkx import (
     decode_one_shot,
     decode_spacetime_one_shot,
 )
+from qec.reference.qiskit.circuit import k_rounds_surface_code
+from qec.reference.qiskit.noise import depol_noise_model
+
 
 def logical_failure_rates_single(
     distance: int = 3,

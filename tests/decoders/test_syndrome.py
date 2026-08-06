@@ -1,8 +1,8 @@
 from qec.decoders.syndrome import (
-    split_into_rounds,
-    parse_round_bits,
     defects_from_bits,
+    parse_round_bits,
     spacetime_defects,
+    split_into_rounds,
 )
 
 

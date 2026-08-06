@@ -11,7 +11,7 @@ from .rotated import RotatedSurfaceCode
 from .unrotated import UnrotatedSurfaceCode
 
 __all__ = [
-    "StimBackend",
     "RotatedSurfaceCode",
+    "StimBackend",
     "UnrotatedSurfaceCode",
 ]

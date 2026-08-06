@@ -12,18 +12,17 @@ purposes rather than high-performance decoding.
 
 import networkx as nx
 
+from qec.decoders.syndrome import (
+    defects_from_bits,
+    parse_round_bits,
+    spacetime_defects,
+    split_into_rounds,
+)
 from qec.geometry import (
-    manhattan,
     code_boundaries,
     code_sizes,
     generate_stabilizers,
-)
-
-from qec.decoders.syndrome import (
-    split_into_rounds,
-    parse_round_bits,
-    defects_from_bits,
-    spacetime_defects,
+    manhattan,
 )
 
 

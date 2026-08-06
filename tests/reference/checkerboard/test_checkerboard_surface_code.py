@@ -1,6 +1,5 @@
-import stim
-
 import pytest
+import stim
 
 from qec.reference.checkerboard import CheckerboardSurfaceCode
 

@@ -1,9 +1,8 @@
-from qec.reference.qiskit.circuit import (
-    one_round_surface_code,
-    k_rounds_surface_code,
-)
-
 from qec.geometry import code_sizes
+from qec.reference.qiskit.circuit import (
+    k_rounds_surface_code,
+    one_round_surface_code,
+)
 
 
 def test_one_round_surface_code_d3():

@@ -3,13 +3,15 @@ Circuit construction for the Qiskit reference
 implementation.
 """
 
-from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from qiskit import ClassicalRegister, QuantumCircuit, QuantumRegister
+
 from qec.geometry import (
-    d_idx,
-    code_sizes,
     ancilla_offsets,
+    code_sizes,
+    d_idx,
     generate_plaquettes,
 )
+
 
 def one_round_surface_code(distance: int = 3) -> QuantumCircuit:
     """

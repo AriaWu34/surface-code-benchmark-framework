@@ -27,7 +27,6 @@ from qec.visualization import (
     plot_backend_comparison,
 )
 
-
 OUTPUT_DIR = Path(
     "results/reference/compare_stim_checkerboard"
 )

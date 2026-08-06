@@ -21,7 +21,6 @@ from qec.visualization import (
     plot_runtime_scaling,
 )
 
-
 OUTPUT_DIR = Path(
     "results/stim/runtime_benchmark"
 )

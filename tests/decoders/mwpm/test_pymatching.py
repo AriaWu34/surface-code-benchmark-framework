@@ -1,7 +1,7 @@
 import pytest
 
-from qec.decoders import MWPMDecoder
 from qec.backends.stim.rotated import RotatedSurfaceCode
+from qec.decoders import MWPMDecoder
 
 
 def test_invalid_implementation():

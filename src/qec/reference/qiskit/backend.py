@@ -7,9 +7,9 @@ surface-code implementation.
 """
 
 from qec.backends.base import Backend
+
 from .engine import (
     logical_failure_rates_single,
-    logical_failure_rates_spacetime,
 )
 
 
@@ -31,21 +31,6 @@ class QiskitBackend(Backend):
         MWPM decoding.
         """
         return logical_failure_rates_single(
-            *args,
-            **kwargs,
-        )
-
-    def logical_failure_rate_spacetime(
-        self,
-        *args,
-        **kwargs,
-    ):
-        """
-        Estimate the logical failure rate of a Qiskit
-        surface-code memory experiment using space-time
-        MWPM decoding.
-        """
-        return logical_failure_rates_spacetime(
             *args,
             **kwargs,
         )

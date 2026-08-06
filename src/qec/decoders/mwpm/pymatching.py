@@ -18,7 +18,6 @@ from qec.decoders.base import Decoder
 
 from .networkx import (
     decode_one_shot,
-    decode_spacetime_one_shot,
 )
 
 
@@ -86,18 +85,6 @@ class MWPMDecoder(Decoder):
         implementation.
         """
         return decode_one_shot(
-            bitstr=bitstr,
-            distance=distance,
-            k=k,
-        )
-
-    def decode_spacetime(
-        self,
-        bitstr: str,
-        distance: int,
-        k: int,
-    ) -> tuple[int, int]:
-        return decode_spacetime_one_shot(
             bitstr=bitstr,
             distance=distance,
             k=k,

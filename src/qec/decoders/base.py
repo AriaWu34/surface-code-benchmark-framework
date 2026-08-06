@@ -19,4 +19,3 @@ class Decoder(ABC):
         Decode syndrome information and return the predicted
         logical observable or observables.
         """
-        pass

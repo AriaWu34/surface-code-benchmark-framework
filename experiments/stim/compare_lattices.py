@@ -18,7 +18,6 @@ from qec.analysis.io import (
 from qec.backends.stim import StimBackend
 from qec.visualization import plot_lattice_comparison
 
-
 OUTPUT_DIR = Path(
     "results/stim/compare_lattices"
 )
