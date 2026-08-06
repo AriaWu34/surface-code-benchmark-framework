@@ -85,7 +85,7 @@ flowchart TD
 - Comprehensive visualization tools
 - CSV-based experiment caching
 - GitHub Actions continuous integration
-- 107 automated unit tests
+- 104 automated unit tests
 - ~97% code coverage
 
 ---
