@@ -1,6 +1,11 @@
 """
-Compare logical memory performance of the Stim and
-Checkerboard reference backends.
+Compare the checkerboard reference implementation against
+Stim's canonical unrotated surface code.
+
+The checkerboard implementation follows the standard planar
+checkerboard stabilizer layout and is therefore benchmarked
+against Stim's unrotated implementation rather than the
+rotated surface code.
 
 Usage:
     python experiments/reference/compare_stim_checkerboard.py
