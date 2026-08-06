@@ -58,6 +58,8 @@ def test_plot_logical_failure_rate(tmp_path):
         logical_error_rates=np.array(
             [0.01, 0.02, 0.03]
         ),
+        lattice="rotated",
+        basis="X",
         distance=3,
         save_path=path,
     )
@@ -81,6 +83,8 @@ def test_plot_distance_scaling(tmp_path):
                 [0.02, 0.01, 0.005]
             ),
         },
+        lattice="rotated",
+        basis="X",
         save_path=path,
     )
 
