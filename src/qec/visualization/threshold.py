@@ -66,8 +66,9 @@ def plot_threshold(
     )
 
     plt.title(
-        f"{lattice.capitalize()} surface code "
-        f"({basis}-memory)"
+        "Threshold Estimation\n"
+        f"{lattice.capitalize()} Surface Code "
+        f"({basis}-Memory)"
     )
 
     plt.grid(

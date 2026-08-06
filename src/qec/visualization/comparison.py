@@ -63,7 +63,7 @@ def plot_decoder_comparison(
     )
 
     plt.title(
-        "Single-round vs Space-time Decoding",
+        "Single-Round vs. Space-Time MWPM Decoding",
     )
 
     plt.grid(True)
@@ -165,7 +165,8 @@ def plot_backend_comparison(
     plt.ylabel("Logical failure rate")
 
     plt.title(
-        f"{basis}-memory (d={distance})"
+        "Stim vs. Checkerboard\n"
+        f"{basis}-Memory (d={distance})"
     )
 
     plt.grid(

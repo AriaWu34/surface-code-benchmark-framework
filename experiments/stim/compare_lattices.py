@@ -205,8 +205,8 @@ def main() -> None:
                 xlabel="Physical error rate",
                 ylabel="Logical failure rate",
                 title=(
-                    f"{basis}-memory "
-                    f"(d={distance})"
+                    "Rotated vs. Unrotated Surface Codes\n"
+                    f"{basis}-Memory (d={distance})"
                 ),
                 save_path=(
                     basis_output_dir

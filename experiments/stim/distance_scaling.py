@@ -221,6 +221,8 @@ def main() -> None:
                 plot_logical_failure_rate(
                     physical_error_rates=PHYSICAL_ERROR_RATES,
                     logical_error_rates=logical_rates,
+                    lattice=lattice,
+                    basis=basis,
                     distance=distance,
                     save_path=(
                         output_dir
@@ -235,6 +237,8 @@ def main() -> None:
             plot_distance_scaling(
                 physical_error_rates=PHYSICAL_ERROR_RATES,
                 logical_error_rates_by_distance=results,
+                lattice=lattice,
+                basis=basis,
                 save_path=(
                     output_dir
                     / "distance_scaling.png"

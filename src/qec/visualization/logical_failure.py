@@ -10,6 +10,8 @@ from .common import save_figure
 def plot_logical_failure_rate(
     physical_error_rates,
     logical_error_rates,
+    lattice: str,
+    basis: str,
     distance,
     save_path=None,
 ) -> None:
@@ -37,7 +39,9 @@ def plot_logical_failure_rate(
     )
 
     plt.title(
-        f"Logical Failure Rate (d={distance})",
+        "Logical Failure Rate\n"
+        f"{lattice.capitalize()} Surface Code "
+        f"({basis}-Memory, d={distance})",
     )
 
     plt.grid(True)
@@ -55,6 +59,8 @@ def plot_logical_failure_rate(
 def plot_distance_scaling(
     physical_error_rates,
     logical_error_rates_by_distance,
+    lattice: str,
+    basis: str,
     save_path=None,
 ) -> None:
     """
@@ -84,7 +90,9 @@ def plot_distance_scaling(
     )
 
     plt.title(
-        "Distance Scaling",
+        "Logical Failure-Rate Scaling\n"
+        f"{lattice.capitalize()} Surface Code "
+        f"({basis}-Memory)",
     )
 
     plt.grid(True)

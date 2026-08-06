@@ -84,7 +84,8 @@ def plot_runtime_scaling(
     )
 
     plt.title(
-        "Stim Runtime Scaling"
+        "Runtime Benchmark\n"
+        "Rotated vs. Unrotated Stim Surface Codes"
     )
 
     plt.grid(
