@@ -39,9 +39,9 @@ def plot_logical_failure_rate(
     )
 
     plt.title(
-        "Logical Failure Rate\n"
-        f"{lattice.capitalize()} Surface Code "
-        f"({basis}-Memory, d={distance})",
+        f"Logical Failure Rate "
+        f"({lattice.capitalize()}, "
+        f"{basis} Memory, d={distance})",
     )
 
     plt.grid(True)
@@ -90,9 +90,9 @@ def plot_distance_scaling(
     )
 
     plt.title(
-        "Logical Failure-Rate Scaling\n"
-        f"{lattice.capitalize()} Surface Code "
-        f"({basis}-Memory)",
+        f"Distance Scaling "
+        f"({lattice.capitalize()}, "
+        f"{basis} Memory)",
     )
 
     plt.grid(True)

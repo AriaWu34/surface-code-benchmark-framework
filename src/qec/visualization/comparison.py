@@ -165,8 +165,8 @@ def plot_backend_comparison(
     plt.ylabel("Logical failure rate")
 
     plt.title(
-        "Stim vs. Checkerboard\n"
-        f"{basis}-Memory (d={distance})"
+        "Stim vs. Checkerboard "
+        f"({basis} Memory, d={distance})"
     )
 
     plt.grid(
