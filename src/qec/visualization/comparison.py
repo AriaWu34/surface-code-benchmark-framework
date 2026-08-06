@@ -1,5 +1,5 @@
 """
-Comparison plots.
+Visualization routines for benchmark comparisons.
 """
 
 from pathlib import Path
@@ -16,7 +16,11 @@ def plot_decoder_comparison(
     pLX_ST,
     pLZ_ST,
     save_path=None,
-):
+) -> None:
+    """
+    Compare single-round and space-time MWPM decoding
+    for Qiskit reference implementation.
+    """
 
     plt.figure(figsize=(7.5, 5.2))
 
@@ -80,7 +84,11 @@ def plot_lattice_comparison(
     ylabel,
     title,
     save_path,
-):
+) -> None:
+    """
+    Compare benchmark results for rotated versus 
+    unrotated Stim implementations.
+    """
 
     plt.figure(figsize=(6, 4))
 
@@ -126,8 +134,9 @@ def plot_backend_comparison(
     save_path: str | Path | None = None,
 ) -> None:
     """
-    Compare the reference checkerboard implementation against
-    Stim's canonical unrotated surface-code implementation.
+    Compare logical failure rates for the checkerboard
+    reference implementation and Stim's canonical
+    unrotated surface-code implementation.
     """
 
     plt.figure(figsize=(6, 4))

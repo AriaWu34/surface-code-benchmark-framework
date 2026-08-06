@@ -1,5 +1,6 @@
 """
-Circuit construction utilities for surface-code simulations.
+Circuit construction for the Qiskit reference
+implementation.
 """
 
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -10,14 +11,10 @@ from qec.geometry import (
     generate_plaquettes,
 )
 
-def one_round_surface_code(distance: int = 3):
+def one_round_surface_code(distance: int = 3) -> QuantumCircuit:
     """
-    Construct a single-round planar surface-code syndrome extraction circuit.
-
-    Parameters
-    ----------
-    distance : int, optional
-        Surface-code distance. Defaults to 3.
+    Construct a single-round surface-code syndrome-extraction
+    circuit using the Qiskit reference implementation.
     """
 
     n_data, n_x, n_z = code_sizes(distance)
@@ -49,16 +46,8 @@ def one_round_surface_code(distance: int = 3):
 
 def k_rounds_surface_code(distance: int = 3, k: int = 1) -> QuantumCircuit:
     """
-    Construct a planar surface-code circuit with multiple rounds of
-    syndrome extraction.
-
-    Parameters
-    ----------
-    distance : int, optional
-        Surface-code distance. Defaults to 3.
-
-    k : int, optional
-        Number of syndrome-extraction rounds.
+    Construct a multi-round surface-code memory circuit
+    using the Qiskit reference implementation.
     """
 
     n_data, n_x, n_z = code_sizes(distance)

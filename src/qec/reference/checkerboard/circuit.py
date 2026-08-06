@@ -1,12 +1,11 @@
 """
-Circuit construction helpers for the Stim planar surface code.
+Circuit construction routines for the checkerboard
+surface-code reference implementation.
 
-This module contains the low-level routines used to construct the
-surface-code circuit, including stabilizer measurements, syndrome
-extraction rounds, state preparation, and physical noise.
-
-These methods are intended to be mixed into or inherited by
-CheckerboardSurfaceCode.
+This module contains the low-level routines used to
+construct stabilizer measurements, syndrome
+extraction rounds, logical-state preparation, and
+physical noise.
 """
 
 import stim
@@ -14,7 +13,8 @@ import stim
 
 class CircuitMixin:
     """
-    Circuit-building routines for the planar surface code.
+    Circuit-building routines for the checkerboard
+    surface-code implementation.
     """
 
     def prepare_logical_state(
@@ -22,7 +22,7 @@ class CircuitMixin:
         circuit: stim.Circuit,
     ):
         """
-        Prepare the logical memory state.
+        Prepare the initial logical memory state.
         """
 
         if self.memory_basis == "Z":
@@ -109,7 +109,7 @@ class CircuitMixin:
         record_idx: int,
     ) -> int:
         """
-        Add one round of syndrome extraction.
+        Add a single syndrome-extraction round.
         """
 
         circuit.append(

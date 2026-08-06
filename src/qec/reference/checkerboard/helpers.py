@@ -1,12 +1,6 @@
 """
-Helper utilities and measurement bookkeeping for the Stim planar surface
-code.
-
-This module contains small utility methods and measurement bookkeeping
-used throughout the circuit construction process.
-
-These methods are intended to be mixed into or inherited by
-CheckerboardSurfaceCode.
+Helper utilities and measurement bookkeeping for the
+checkerboard surface-code implementation.
 """
 
 from dataclasses import dataclass
@@ -27,7 +21,7 @@ class StabilizerMeasurement:
 
 class HelperMixin:
     """
-    Measurement bookkeeping and helper routines.
+    Measurement bookkeeping and helper utilities.
     """
 
     def reset_measurements(self) -> None:

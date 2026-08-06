@@ -1,5 +1,5 @@
 """
-Execution engine for the Qiskit backend.
+Simulation engine for the Qiskit reference backend.
 
 Provides Monte Carlo simulation routines based on
 Qiskit Aer and the reference NetworkX decoder.
@@ -27,11 +27,12 @@ def logical_failure_rates_single(
 ) -> tuple[float, float]:
     """
     Estimate logical X- and Z-failure rates using the
-    Qiskit simulation pipeline with single-round MWPM 
+    Qiskit reference backend with single-round MWPM
     decoding.
 
-    This routine performs Monte Carlo simulation using
-    AerSimulator and the reference NetworkX decoder.
+    Monte Carlo simulations are performed with
+    Qiskit Aer and decoded using the reference
+    NetworkX implementation.
     """
         
     sim = AerSimulator()
@@ -61,10 +62,11 @@ def logical_failure_rates_spacetime(
 ) -> tuple[float, float]:
     """
     Estimate logical X- and Z-failure rates using the
-    Qiskit simulation pipeline with space-time MWPM decoding.
+    Qiskit reference backend with space-time MWPM
+    decoding.
 
-    Multiple rounds of syndrome extraction are decoded
-    using the reference NetworkX implementation.
+    Multiple rounds of syndrome extraction are
+    decoded using the reference NetworkX decoder.
     """
 
     sim = AerSimulator()
@@ -94,12 +96,11 @@ def compare_single_vs_spacetime(
     distance: int = 3,
 ):
     """
-    Compare single-round and space-time decoding for
-    the Qiskit simulation pipeline across a range of
-    physical error rates.
+    Compare single-round and space-time MWPM
+    decoding across a range of physical error rates.
 
-    Returns logical failure rates for both decoding
-    strategies to enable benchmarking.
+    Returns logical X- and Z-failure rates for both
+    decoding strategies.
     """
     
     pLX_1, pLZ_1, pLX_ST, pLZ_ST = [], [], [], []
@@ -115,7 +116,7 @@ def compare_single_vs_spacetime(
         )
         pLX_1.append(fx1); pLZ_1.append(fz1)
 
-        # space–time decoidng
+        # space–time decoding
         fxst, fzst = logical_failure_rates_spacetime(
             distance=distance,
             k=k_space_time,

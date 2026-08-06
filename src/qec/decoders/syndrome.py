@@ -1,7 +1,9 @@
 """
-Syndrome extraction and defect processing utilities.
+Utilities for processing syndrome measurement outcomes.
 
-Converts stabilizer measurement outcomes into syndrome defects for decoding.
+This module converts stabilizer measurement results into
+detector events and space-time defects used by MWPM
+decoders.
 """
 
 import numpy as np
@@ -15,7 +17,7 @@ def split_into_rounds(
     n_stabilizers: int,
 ) -> list[str]:
     """
-    Split a measurement string into k syndrome rounds.
+    Split a syndrome measurement string into consecutive rounds.
     """
     s = bitstr.replace(" ", "")[::-1]
 
@@ -30,14 +32,14 @@ def parse_round_bits(
     n_x: int,
 ) -> tuple[str, str]:
     """
-    Return (X_bits, Z_bits) for a single syndrome round.
+    Split a syndrome round into X- and Z-stabilizer outcomes.
     """
     return round_bits[:n_x], round_bits[n_x:]
 
 
 def defects_from_bits(bits: str) -> list[int]:
     """
-    Return indices of stabilizers reporting syndrome 1.
+    Return the indices of stabilizers detecting a syndrome event.
     """
     return [i for i, b in enumerate(bits) if b == "1"]
 
@@ -48,10 +50,11 @@ def spacetime_defects(
     k: int,
 ) -> tuple[list[tuple[int, int]], list[tuple[int, int]]]:
     """
-    Construct space-time defects for MWPM decoding.
+    Construct space-time syndrome defects for MWPM decoding.
 
-    Consecutive syndrome rounds are compared, and changes in
-    stabilizer outcomes are recorded as space-time defect events.
+    Successive syndrome rounds are compared to identify
+    changes in stabilizer outcomes, which correspond to
+    detector events in space-time.
     """
     
     _, n_x, n_z = code_sizes(distance)

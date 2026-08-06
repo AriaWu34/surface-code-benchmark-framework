@@ -27,6 +27,29 @@ class StimSurfaceCode(ABC):
         readout_error: float = 0.0,
         memory_basis: str = "Z",
     ):
+        """
+        Create a Stim-generated surface-code memory
+        experiment.
+
+        Parameters
+        ----------
+        distance
+            Odd code distance.
+
+        rounds
+            Number of syndrome-extraction rounds.
+
+        depolarizing_error
+            Depolarising error probability applied after
+            Clifford operations.
+
+        readout_error
+            Measurement error probability.
+
+        memory_basis
+            Logical memory basis ("X" or "Z").
+        """
+
         validate_distance(distance)
 
         if rounds < 1:
@@ -57,7 +80,7 @@ class StimSurfaceCode(ABC):
     @abstractmethod
     def _task_name(self) -> str:
         """
-        Return the Stim generated-circuit task.
+        Return the Stim generated-circuit task name.
         """
 
     def build_circuit(
@@ -107,7 +130,7 @@ class StimSurfaceCode(ABC):
         shots: int,
     ):
         """
-        Sample detector outcomes.
+        Sample detector events.
         """
 
         return (
@@ -120,8 +143,8 @@ class StimSurfaceCode(ABC):
         shots: int,
     ):
         """
-        Sample detector outcomes together with
-        logical observables.
+        Sample detector events together with logical
+        observables.
         """
 
         return (

@@ -1,10 +1,13 @@
 """
-MWPM implementation for the Qiskit backend.
+Reference Minimum Weight Perfect Matching (MWPM)
+decoder based on NetworkX.
 
-Unlike the Stim decoders, this module operates on
-Qiskit syndrome bitstrings and checkerboard geometry.
-It is therefore intentionally not derived from
-Decoder.
+Unlike the Stim decoder, this implementation
+operates on syndrome bitstrings produced by the
+reference Qiskit and checkerboard backends.
+
+It is intended for validation and educational
+purposes rather than high-performance decoding.
 """
 
 import networkx as nx
@@ -28,8 +31,6 @@ def generate_ancilla_positions(
     distance: int,
 ) -> list[tuple[float, float]]:
     """
-    Temporary compatibility helper.
-
     Returns ancilla coordinates derived from the
     stabilizer geometry.
     """
@@ -43,7 +44,10 @@ def generate_ancilla_positions(
 
 
 # Boundary utilities
-def distance_to_vertical_boundary(pos, distance):
+def distance_to_vertical_boundary(
+    pos: tuple[float, float],
+    distance: int,
+) -> float:
     """
     Distance to the nearest top or bottom boundary.
     """
@@ -55,7 +59,10 @@ def distance_to_vertical_boundary(pos, distance):
     )
 
 
-def distance_to_horizontal_boundary(pos, distance):
+def distance_to_horizontal_boundary(
+    pos: tuple[float, float],
+    distance: int,
+) -> float:
     """
     Distance to the nearest left or right boundary.
     """
@@ -72,7 +79,7 @@ def mwpm_pairs(
     defect_idxs: list[int],
     boundary_mode: str,
     distance: int,
-):
+) -> list[tuple[str, str]]:
     """
     Match syndrome defects using MWPM.
     """
@@ -139,7 +146,7 @@ def ancilla_pos_3d(
     idx: int,
     t: int,
     distance: int,
-):
+) -> tuple[float, float, int]:
     """
     Return the space-time coordinates of an ancilla defect.
     """
@@ -151,10 +158,10 @@ def ancilla_pos_3d(
 
 
 def mwpm_3d(
-    defects,
-    boundary_mode,
-    distance,
-):
+    defects: list[tuple[int, int]],
+    boundary_mode: str,
+    distance: int,
+) -> list[tuple[str, str]]:
     """
     Match space-time syndrome defects using MWPM.
 
@@ -242,9 +249,13 @@ def decode_one_shot(
     bitstr: str,
     distance: int,
     k: int = 1,
-):
+) -> tuple[int, int]:
     """
-    Decode the final syndrome round using MWPM.
+    Decode the final syndrome round using Minimum Weight
+    Perfect Matching (MWPM).
+
+    Returns the predicted logical X and logical Z
+    observables.
     """
     _, n_x, n_z = code_sizes(distance)
 
@@ -298,7 +309,11 @@ def decode_spacetime_one_shot(
     k: int,
 ) -> tuple[int, int]:
     """
-    Decode space-time syndrome defects using MWPM.
+    Decode space-time syndrome defects using Minimum
+    Weight Perfect Matching (MWPM).
+
+    Returns the predicted logical X and logical Z
+    observables.
     """
     defects_Z, defects_X = spacetime_defects(
         bitstr,
@@ -335,21 +350,23 @@ def decode_spacetime_one_shot(
 
 # Logical checks
 def correction_spans_code(
-    pairs,
+    pairs: list[tuple[str, str]],
     boundary_mode: str,
     distance: int,
 ) -> bool:
     """
-    Determine whether a matched correction chain spans the code.
+    Determine whether a matched correction chain spans
+    the code.
 
-    Used as a simple logical-failure heuristic.
+    A spanning correction chain is treated as a logical
+    failure by the reference decoder.
     """
 
     bounds = code_boundaries(distance)
     anc_pos = generate_ancilla_positions(distance)
 
     for u, v in pairs:
-        def axis(node):
+        def axis(node: str) -> float:
             if node == "B":
                 return (
                     bounds["top"]

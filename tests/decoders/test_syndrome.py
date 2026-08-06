@@ -53,6 +53,7 @@ def test_spacetime_defects_no_changes():
     assert defects_z == []
     assert defects_x == []
 
+
 def test_spacetime_defects_detect_change():
     defects_z, defects_x = spacetime_defects(
         "00000000 00010000",

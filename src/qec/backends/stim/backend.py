@@ -30,6 +30,16 @@ class StimBackend(Backend):
         self,
         lattice: str = "rotated",
     ):
+        """
+        Create a Stim simulation backend.
+
+        Parameters
+        ----------
+        lattice
+            Surface-code lattice to simulate ("rotated" or
+            "unrotated").
+        """
+
         if lattice not in {
             "rotated",
             "unrotated",
@@ -42,6 +52,7 @@ class StimBackend(Backend):
 
     @property
     def name(self) -> str:
+        """Return the backend identifier."""
         return f"stim-{self.lattice}"
 
     def build_surface_code(
@@ -49,8 +60,8 @@ class StimBackend(Backend):
         **kwargs,
     ):
         """
-        Construct the requested Stim surface-code
-        implementation.
+        Construct a Stim-generated surface-code memory
+        experiment.
         """
 
         if self.lattice == "rotated":
@@ -72,7 +83,9 @@ class StimBackend(Backend):
         memory_basis: str = "Z",
     ) -> float:
         """
-        Estimate the logical failure rate.
+        Estimate the logical failure rate of a logical-memory
+        experiment using Monte Carlo simulation and Minimum
+        Weight Perfect Matching (MWPM) decoding.
         """
 
         code = self.build_surface_code(

@@ -63,9 +63,13 @@ MEMORY_BASES = (
 def run_experiment(
     distance: int,
     basis: str,
-):
+) -> tuple[
+    dict[str, np.ndarray],
+    pd.DataFrame,
+]:
     """
-    Compare Stim and Checkerboard backends.
+    Compare the logical failure rates of the Stim and
+    checkerboard reference backends.
     """
 
     stim = StimBackend(
@@ -74,7 +78,7 @@ def run_experiment(
 
     checkerboard = CheckerboardBackend()
 
-    comparison = {}
+    comparison: dict[str, np.ndarray] = {}
 
     rows = []
 
@@ -131,7 +135,7 @@ def run_experiment(
     )
 
 
-def main():
+def main() -> None:
 
     for basis in MEMORY_BASES:
 

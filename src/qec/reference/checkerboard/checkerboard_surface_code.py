@@ -1,12 +1,12 @@
 """
-Stim backend for planar surface-code simulations.
+Explicit first-principles implementation of a
+checkerboard surface-code memory experiment.
 
-This module exposes the public CheckerboardSurfaceCode class, which builds
-Stim-compatible surface-code circuits, detector error models, and
-sampling utilities.
-
-Circuit construction, detector generation, and bookkeeping are delegated
-to mixins to keep this file focused on the high-level API.
+The implementation explicitly constructs the qubit
+layout, stabilizer measurements, syndrome
+extraction, detector events, and logical
+observables without relying on Stim's built-in
+surface-code circuit generators.
 """
 
 import stim
@@ -28,7 +28,8 @@ class CheckerboardSurfaceCode(
     DetectorMixin,
 ):
     """
-    Stim implementation of the planar surface code.
+    Explicit first-principles implementation of a
+    checkerboard surface-code memory experiment.
     """
 
     def __init__(
@@ -39,6 +40,11 @@ class CheckerboardSurfaceCode(
         readout_error: float = 0.0,
         memory_basis: str = "Z",
     ):
+        """
+        Create a checkerboard surface-code memory
+        experiment.
+        """
+
         validate_distance(distance)
 
         if rounds < 1:
@@ -107,18 +113,14 @@ class CheckerboardSurfaceCode(
         return range(self.n_data)
 
     @property
-    def n_stabilizers(self):
+    def n_stabilizers(self) -> int:
         return len(self.stabilizers)
 
     @property
-    def stabilizer_ancilla_start(
-        self,
-    ) -> int:
+    def stabilizer_ancilla_start(self) -> int:
         return self.n_data
 
-    def build_circuit(
-        self,
-    ) -> stim.Circuit:
+    def build_circuit(self) -> stim.Circuit:
         """
         Build a Stim surface-code circuit for a
         logical memory experiment.

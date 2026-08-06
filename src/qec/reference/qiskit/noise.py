@@ -1,5 +1,5 @@
 """
-Noise model definitions for QEC simulations.
+Noise models used by the Qiskit reference backend.
 """
 
 from qiskit_aer.noise import NoiseModel
@@ -12,7 +12,8 @@ def depol_noise_model(
     ro: float = 0.02,
 ) -> NoiseModel:
     """
-    Create a depolarizing noise model with readout errors.
+    Create a depolarising noise model with ancilla
+    readout errors.
     """
     if p2 is None:
         p2 = 2.5 * p1

@@ -67,7 +67,10 @@ MEMORY_BASES = (
 def run_experiment(
     backend: StimBackend,
     basis: str,
-):
+) -> tuple[
+    dict[int, np.ndarray],
+    pd.DataFrame,
+]:
     """
     Run logical-memory simulations for one lattice.
     """
@@ -125,7 +128,7 @@ def run_experiment(
     )
 
 
-def main():
+def main() -> None:
 
     for lattice in LATTICES:
 

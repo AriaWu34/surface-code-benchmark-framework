@@ -9,9 +9,12 @@ import matplotlib.pyplot as plt
 
 def save_figure(
     save_path: str | Path | None = None,
-):
+) -> None:
     """
-    Save the current matplotlib figure.
+    Save the current Matplotlib figure.
+
+    Parent directories are created automatically if they
+    do not already exist.
     """
 
     if save_path is None:

@@ -82,14 +82,15 @@ MEMORY_BASES = (
 )
 
 
-def run_threshold_experiment(
-    backend,
-    distances,
-    physical_error_rates,
-    memory_basis,
-):
+def run_experiment(
+    backend: StimBackend,
+    distances: tuple[int, ...],
+    physical_error_rates: np.ndarray,
+    memory_basis: str,
+) -> dict[int, np.ndarray]:
     """
-    Compute logical failure rates for a threshold study.
+    Run logical-memory simulations for threshold
+    estimation.
     """
 
     results = {}
@@ -141,7 +142,7 @@ def run_threshold_experiment(
     return results
 
 
-def main():
+def main() -> None:
 
     for lattice in LATTICES:
 
@@ -172,18 +173,16 @@ def main():
                 use_cache=USE_CACHE,
             ):
 
-                print("\nRunning Monte Carlo simulation...")
+                print(
+                    "\nRunning Monte Carlo simulation..."
+                )
 
-                logical_rates = run_threshold_experiment(
+                logical_rates = run_experiment(
                     backend=backend,
                     distances=DISTANCES,
                     physical_error_rates=PHYSICAL_ERROR_RATES,
                     memory_basis=basis,
                 )
-
-                #
-                # Save logical failure rates
-                #
 
                 rows = []
 
@@ -212,7 +211,8 @@ def main():
             else:
 
                 print(
-                    f"\nLoading cached results: {csv_path}"
+                    f"\nLoading cached results: "
+                    f"{csv_path}"
                 )
 
                 df = load_dataframe(
@@ -224,10 +224,16 @@ def main():
                 for (
                     distance,
                     group,
-                ) in df.groupby("distance"):
+                ) in df.groupby(
+                    "distance"
+                ):
 
-                    logical_rates[int(distance)] = (
-                        group["logical_error_rate"]
+                    logical_rates[
+                        int(distance)
+                    ] = (
+                        group[
+                            "logical_error_rate"
+                        ]
                         .to_numpy()
                     )
 
@@ -246,36 +252,6 @@ def main():
                 summarize_threshold(
                     estimate,
                 )
-            )
-
-            #
-            # Save logical failure rates
-            #
-
-            rows = []
-
-            for distance, rates in sorted(
-                logical_rates.items()
-            ):
-
-                for p, logical in zip(
-                    PHYSICAL_ERROR_RATES,
-                    rates,
-                ):
-
-                    rows.append(
-                        {
-                            "distance": distance,
-                            "physical_error_rate": p,
-                            "logical_error_rate": logical,
-                        }
-                    )
-
-            save_dataframe(
-                pd.DataFrame(rows),
-                OUTPUT_DIR
-                / lattice
-                / f"{basis}.csv",
             )
 
             #

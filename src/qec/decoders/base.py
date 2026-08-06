@@ -7,12 +7,16 @@ from abc import ABC, abstractmethod
 
 class Decoder(ABC):
     """
-    Interface for syndrome decoders.
+    Abstract interface for syndrome decoders.
+
+    Concrete decoder implementations translate syndrome
+    information into predicted logical observables.
     """
 
     @abstractmethod
     def decode(self, *args, **kwargs):
         """
-        Decode syndrome information and return logical outcomes.
+        Decode syndrome information and return the predicted
+        logical observable or observables.
         """
         pass

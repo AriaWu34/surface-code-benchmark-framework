@@ -2,8 +2,7 @@
 Simulation utilities for Stim-based surface-code experiments.
 
 This module provides backwards-compatible wrappers around
-the Stim backend. New code should instantiate `StimBackend`
-directly.
+the Stim backend. New code should use `StimBackend` directly.
 """
 
 from qec.backends.stim import StimBackend
@@ -18,12 +17,14 @@ def logical_failure_rate_stim(
     memory_basis: str = "Z",
 ) -> float:
     """
-    Estimate the logical failure rate using the Stim backend.
+    Estimate the logical failure rate of a Stim-based
+    logical-memory experiment.
 
     Notes
     -----
-    This function is retained for backwards compatibility.
-    New code should use `StimBackend.logical_failure_rate()`.
+    This function is a backwards-compatibility wrapper around
+    `StimBackend.logical_failure_rate()`. New code should use
+    the backend API directly.
     """
 
     return StimBackend().logical_failure_rate(

@@ -25,12 +25,13 @@ from qec.visualization.runtime import (
 )
 
 
-def assert_saved(path: Path):
+def assert_saved(path: Path) -> None:
 
-    assert path.exists()
-    assert path.stat().st_size > 0
-
-    plt.close("all")
+    try:
+        assert path.exists()
+        assert path.stat().st_size > 0
+    finally:
+        plt.close("all")
 
 
 def test_save_figure(tmp_path):

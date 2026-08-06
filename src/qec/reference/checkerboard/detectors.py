@@ -1,13 +1,6 @@
 """
-Detector and logical observable construction for the Stim planar surface
-code.
-
-This module contains the routines responsible for constructing detector
-events and logical observables after syndrome extraction and final data
-measurements.
-
-These methods are intended to be mixed into or inherited by
-CheckerboardSurfaceCode.
+Detector and logical-observable construction for the
+checkerboard surface-code implementation.
 """
 
 import stim
@@ -15,7 +8,7 @@ import stim
 
 class DetectorMixin:
     """
-    Detector and logical observable routines for the planar surface code.
+    Detector and logical-observable construction routines.
     """
 
     def add_round_detectors(
@@ -24,6 +17,10 @@ class DetectorMixin:
         round_idx: int,
         current_record_idx: int,
     ) -> None:
+        """
+        Construct detector events between consecutive
+        syndrome-extraction rounds.
+        """
 
         if round_idx == 0:
             return

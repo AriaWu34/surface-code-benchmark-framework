@@ -1,3 +1,11 @@
+"""
+Visualization utilities for benchmark experiments.
+
+Provides plotting functions for logical failure rates,
+threshold estimation, runtime benchmarking, and
+backend comparisons.
+"""
+
 from .logical_failure import (
     plot_logical_failure_rate,
     plot_distance_scaling,

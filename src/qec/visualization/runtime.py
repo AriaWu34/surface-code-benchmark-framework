@@ -13,7 +13,7 @@ def plot_runtime_scaling(
     distances,
     runtimes: dict[str, dict[str, list[float]]],
     save_path: str | Path | None = None,
-):
+) -> None:
     """
     Plot runtime scaling with error bars.
 

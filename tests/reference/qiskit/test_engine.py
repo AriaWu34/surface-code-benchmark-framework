@@ -7,6 +7,7 @@ from qec.reference.qiskit.engine import (
     logical_failure_rates_spacetime,
 )
 
+
 def test_single_round_engine_runs():
     fx, fz = logical_failure_rates_single(
         distance=3,

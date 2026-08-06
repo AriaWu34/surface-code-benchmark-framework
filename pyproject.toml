@@ -5,7 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "surface-code-benchmark-framework"
 version = "1.0.0"
-description = "A modular framework for benchmarking quantum surface codes."
+authors = [{ name = "Zhuofei Wu", email = "zhuofei.wu.34@gmail.com" }]
+description = "A modular Python framework for benchmarking quantum error correction using surface codes."
 readme = "README.md"
 requires-python = ">=3.12"
 

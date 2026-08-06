@@ -1,5 +1,8 @@
 """
-Utilities for reading and writing experiment results.
+Utilities for exporting benchmark results.
+
+Provides helper functions for saving tabular data,
+text summaries, and other analysis outputs.
 """
 
 from pathlib import Path
@@ -11,6 +14,12 @@ def save_dataframe(
     df: pd.DataFrame,
     save_path: str | Path,
 ) -> None:
+    """
+    Save a pandas DataFrame as a CSV file.
+
+    Parent directories are created automatically if they
+    do not already exist.
+    """
 
     save_path = Path(save_path)
 
@@ -38,6 +47,12 @@ def save_text(
     text: str,
     save_path: str | Path,
 ) -> None:
+    """
+    Save plain-text output to a file.
+
+    Parent directories are created automatically if they
+    do not already exist.
+    """
 
     save_path = Path(save_path)
 

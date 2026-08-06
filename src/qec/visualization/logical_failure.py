@@ -12,7 +12,12 @@ def plot_logical_failure_rate(
     logical_error_rates,
     distance,
     save_path=None,
-):
+) -> None:
+    """
+    Plot logical failure rate as a function of physical
+    error probability for a single code distance.
+    """
+
     plt.figure(figsize=(7.5, 5.2))
 
     plt.plot(
@@ -24,7 +29,7 @@ def plot_logical_failure_rate(
     )
 
     plt.xlabel(
-        "Physical depolarizing probability",
+        "Physical error rate",
     )
 
     plt.ylabel(
@@ -51,7 +56,12 @@ def plot_distance_scaling(
     physical_error_rates,
     logical_error_rates_by_distance,
     save_path=None,
-):
+) -> None:
+    """
+    Plot logical failure rate for multiple code
+    distances.
+    """
+
     plt.figure(figsize=(7.5, 5.2))
 
     for distance, rates in (
@@ -66,7 +76,7 @@ def plot_distance_scaling(
         )
 
     plt.xlabel(
-        "Physical depolarizing probability",
+        "Physical error rate",
     )
 
     plt.ylabel(

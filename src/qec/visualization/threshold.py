@@ -16,7 +16,7 @@ def plot_threshold(
     basis: str,
     threshold: float | None = None,
     save_path: str | Path | None = None,
-):
+) -> None:
     """
     Plot threshold curves for multiple code distances.
     """

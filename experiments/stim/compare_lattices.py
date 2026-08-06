@@ -64,9 +64,13 @@ MEMORY_BASES = (
 def run_experiment(
     basis: str,
     distance: int,
-):
+) -> tuple[
+    dict[str, np.ndarray],
+    pd.DataFrame,
+]:
     """
-    Run a lattice comparison experiment.
+    Compare the logical failure rates of rotated and
+    unrotated Stim surface codes.
     """
 
     comparison = {}
@@ -125,7 +129,7 @@ def run_experiment(
     )
 
 
-def main():
+def main() -> None:
 
     for basis in MEMORY_BASES:
 

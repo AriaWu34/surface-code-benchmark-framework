@@ -18,5 +18,6 @@ class Backend(ABC):
     @abstractmethod
     def logical_failure_rate(self, *args, **kwargs):
         """
-        Estimate the logical failure rate.
+        Estimate the logical failure rate of a logical-memory
+        experiment.
         """

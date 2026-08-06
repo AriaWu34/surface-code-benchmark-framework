@@ -19,12 +19,13 @@ from qec.decoders import MWPMDecoder
 
 class CheckerboardBackend(Backend):
     """
-    High-level interface for the explicit reference
-    surface-code backend.
+    High-level interface for the checkerboard reference
+    backend.
     """
 
     @property
     def name(self) -> str:
+        """Return the backend identifier."""
         return "reference"
 
     def logical_failure_rate(
@@ -37,8 +38,8 @@ class CheckerboardBackend(Backend):
         memory_basis: str = "Z",
     ) -> float:
         """
-        Estimate the logical failure rate using the
-        explicit reference circuit implementation.
+        Estimate the logical failure rate of a
+        checkerboard surface-code memory experiment.
         """
 
         code = CheckerboardSurfaceCode(

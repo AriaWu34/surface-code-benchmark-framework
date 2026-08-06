@@ -28,10 +28,6 @@ def test_pymatching_decoder_builds():
 
     assert decoder is not None
 
-    assert decoder is not None
-
-    assert decoder is not None
-
 
 def test_pymatching_decode_runs():
 

@@ -24,11 +24,11 @@ from .networkx import (
 
 class MWPMDecoder(Decoder):
     """
-    Minimum Weight Perfect Matching decoder.
+    Common interface to MWPM decoder implementations.
 
-    Provides a common interface to both the reference 
+    Provides a common interface to the reference
     NetworkX implementation and the PyMatching decoder
-    for Stim detector error models.
+    used by the framework.
     """
 
     def __init__(
@@ -36,6 +36,19 @@ class MWPMDecoder(Decoder):
         implementation: str = "networkx",
         dem=None,
     ):
+        """
+        Create an MWPM decoder.
+
+        Parameters
+        ----------
+        implementation
+            Decoder implementation ("networkx" or "pymatching").
+
+        dem
+            Stim detector error model required by the
+            PyMatching implementation.
+        """
+
         self.implementation = implementation
 
         self.matching = None
@@ -68,6 +81,10 @@ class MWPMDecoder(Decoder):
         distance: int,
         k: int = 1,
     ) -> tuple[int, int]:
+        """
+        Decode detector events using the selected MWPM
+        implementation.
+        """
         return decode_one_shot(
             bitstr=bitstr,
             distance=distance,

@@ -56,9 +56,14 @@ REPEATS = 5
 def benchmark(
     backend: StimBackend,
     distance: int,
-):
+) -> tuple[
+    float,
+    float,
+    float,
+]:
     """
-    Benchmark one configuration.
+    Benchmark the runtime of a single simulation
+    configuration.
     """
 
     timings = []
@@ -102,7 +107,10 @@ def benchmark(
     )
 
 
-def run_experiment():
+def run_experiment() -> tuple[
+    dict[str, dict[str, list[float]]],
+    pd.DataFrame,
+]:
 
     rows = []
 
@@ -173,7 +181,7 @@ def run_experiment():
     )
 
 
-def main():
+def main() -> None:
 
     csv_path = (
         OUTPUT_DIR

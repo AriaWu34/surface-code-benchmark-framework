@@ -54,9 +54,19 @@ K_SPACETIME = 3
 READOUT_ERROR = 0.01
 
 
-def run_experiment():
+def run_experiment() -> tuple[
+    tuple[
+        np.ndarray,
+        np.ndarray,
+        np.ndarray,
+        np.ndarray,
+        np.ndarray,
+    ],
+    pd.DataFrame,
+]:
     """
-    Compare single-round and space-time decoding.
+    Compare single-round and space-time MWPM decoding
+    using the Qiskit reference backend.
     """
 
     (
@@ -95,7 +105,7 @@ def run_experiment():
     )
 
 
-def main():
+def main() -> None:
 
     csv_path = (
         OUTPUT_DIR

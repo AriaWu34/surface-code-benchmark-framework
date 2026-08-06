@@ -1,5 +1,10 @@
 """
-Threshold analysis utilities.
+Threshold estimation utilities.
+
+Provides routines for estimating surface-code
+thresholds from logical failure-rate curves together
+with utilities for summarising and exporting the
+results.
 """
 
 from __future__ import annotations
@@ -19,7 +24,10 @@ THRESHOLD_SEARCH_REGION = (
 @dataclass(slots=True)
 class ThresholdEstimate:
     """
-    Result of a threshold analysis.
+    Result of a threshold estimation.
+
+    Stores the estimated threshold together with all
+    pairwise curve crossings and summary statistics.
     """
 
     threshold: float | None
@@ -135,8 +143,8 @@ def estimate_threshold(
     logical_error_rates_by_distance,
 ) -> ThresholdEstimate:
     """
-    Estimate the threshold from neighbouring
-    code-distance crossings.
+    Estimate the logical-error threshold from pairwise
+    crossings of neighbouring code-distance curves.
     """
 
     distances = sorted(
@@ -190,7 +198,8 @@ def summarize_threshold(
     estimate: ThresholdEstimate,
 ) -> str:
     """
-    Produce a human-readable threshold summary.
+    Generate a human-readable summary of a threshold
+    estimation.
     """
 
     lines = [

@@ -89,7 +89,7 @@ def test_stabilizer_weight():
         )
 
 
-def test_planar_stabilizer_weight():
+def test_stabilizer_weight_d5():
 
     layout = generate_stabilizers(5)
 
@@ -111,7 +111,7 @@ def test_weight_matches_coordinates():
         )
 
 
-def test_planar_layout_d3():
+def test_stabilizer_layout_d3():
     layout = generate_stabilizers(3)
 
     types = [
