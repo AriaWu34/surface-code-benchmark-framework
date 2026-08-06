@@ -1,9 +1,23 @@
 # Virtual environments
 .venv/
+venv/
+testenv/
+.env/
 
 # Python cache
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Test artifacts
+.coverage
+.coverage.*
+.pytest_cache/
+htmlcov/
 
 # Jupyter
 .ipynb_checkpoints/
@@ -17,13 +31,3 @@ Thumbs.db
 
 # Legacy notebooks
 notebooks/legacy/
-
-# Coverage
-.coverage
-htmlcov/
-.coverage.*
-
-# Packaging
-*.egg-info/
-build/
-dist/
