@@ -1,7 +1,7 @@
 # Surface Code Benchmark Framework
 
 [![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Tests](https://github.com/AriaWu34/surface-code-benchmark-framework/actions/workflows/tests.yml/badge.svg)](https://github.com/AriaWu34/surface-code-benchmark-framework/actions/workflows/tests.yml)
+[![CI](https://github.com/AriaWu34/surface-code-benchmark-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/AriaWu34/surface-code-benchmark-framework/actions/workflows/ci.yml)
 
 
 A modular Python framework for benchmarking quantum error correction using surface codes.
