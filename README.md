@@ -202,6 +202,8 @@ The checkerboard backend is an explicit first-principles implementation of a che
 
 This checkerboard implementation emphasizes transparency and readability over completeness and performance. It serves as an educational reference and validation backend, demonstrating the underlying principles of surface-code construction while sharing the same benchmarking interface as the Stim backend.
 
+Because the implementation follows the standard planar checkerboard stabilizer layout, it is benchmarked against Stim's canonical unrotated surface-code implementation, which provides the closest production reference.
+
 ### Qiskit
 
 The Qiskit backend is a lightweight reference implementation of a surface-code-inspired memory experiment using Qiskit and Aer. This implementation constructs simplified syndrome-extraction circuits with configurable depolarising and readout noise before performing MWPM decoding using the reference NetworkX decoder.
@@ -220,7 +222,7 @@ The framework currently provides the following benchmark suites.
 | Threshold estimation | Stim | Estimates the surface-code threshold from curve crossings |
 | Runtime benchmarking | Stim | Measures simulation runtime as a function of code distance |
 | Lattice comparison | Stim | Compares rotated and unrotated surface-code implementations |
-| Backend comparison | Stim + Checkerboard | Compares the Stim backend against the checkerboard reference implementation |
+| Backend comparison | Stim (unrotated) + Checkerboard | Compares the Stim backend against the checkerboard reference implementation |
 | Decoder comparison | Qiskit | Compares single-round and space-time decoding strategies |
 
 ---
