@@ -39,13 +39,10 @@ flowchart TD
 
     G --> H[Analysis]
 
-    H --> H1[Threshold Estimation]
-    H --> H2[Runtime Benchmarking]
-    H --> H3[Logical Failure Rates]
-
     H --> I[Visualization]
 
     I --> J[Figures & CSV Results]
+
 ```
 
 ---
@@ -265,8 +262,6 @@ Runtime benchmarks measure the computational cost of logical-memory simulations 
        width="700">
 </p>
 
-These experiments demonstrate how the framework can be used to evaluate both the logical performance and computational efficiency of different surface-code implementations under a common benchmarking workflow.
-
 ---
 
 ### Lattice Comparison
@@ -281,11 +276,22 @@ The framework supports direct comparison of rotated and unrotated surface-code i
 
 ---
 
+## Extensibility
+
+The modular architecture is designed to make the framework straightforward to extend with additional components, including:
+
+- additional decoding algorithms (e.g. Union-Find, belief propagation)
+- correlated and biased noise models
+- circuit-level simulations
+- additional simulation backends
+
+---
+
 ## Testing
 
 The project is continuously tested using GitHub Actions and currently includes
 
-- 107 automated unit tests
+- 104 automated unit tests
 - ~97% code coverage
 
 Run the complete test suite locally.
@@ -293,17 +299,6 @@ Run the complete test suite locally.
 ```bash
 pytest
 ```
-
----
-
-## Future Work
-
-The modular architecture is designed to support future extensions, including
-
-- additional decoding algorithms
-- correlated and biased noise models
-- circuit-level threshold studies
-- additional simulation backends
 
 ---
 
