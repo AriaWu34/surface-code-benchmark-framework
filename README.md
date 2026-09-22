@@ -52,7 +52,7 @@ flowchart TD
 ### Simulation
 
 - Stim-based rotated and unrotated surface codes
-- Explicit checkerboard surface-code implementation
+- Reference checkerboard surface-code implementation
 - Reference Qiskit implementation
 - Configurable odd code distances (`d = 3, 5, 7, ...`)
 - Multi-round syndrome extraction
@@ -61,9 +61,8 @@ flowchart TD
 ### Decoding
 
 - Minimum Weight Perfect Matching (MWPM)
-- PyMatching decoder
-- Reference NetworkX decoder
-- Detector Error Model (DEM) generation
+- PyMatching implementatoin
+- NetworkX implementation
 
 ### Experiments
 
@@ -73,7 +72,7 @@ flowchart TD
 - Runtime benchmarking
 - Rotated vs. unrotated comparison
 - Stim vs. reference implementation comparison
-- Decoder strategy comparison
+- Single round vs Space-time decoding strategy comparison
 
 ### Software Engineering
 
@@ -195,17 +194,17 @@ The Stim backend provides
 
 ### Checkerboard
 
-The checkerboard backend is an explicit first-principles implementation of a checkerboard surface-code memory experiment. Rather than relying on Stim's built-in circuit generators, it constructs the code directly from its fundamental components by explicitly defining the qubit layout, stabilizer measurements, repeated syndrome-extraction rounds, detector events, and logical observables.
+The checkerboard backend is an explicit first-principles implementation of a checkerboard rotated surface-code. Rather than relying on Stim's built-in circuit generators, it constructs the code directly by explicitly defining the qubit layout, stabilizer measurements, repeated syndrome-extraction rounds, detector events, and logical observables.
 
-This checkerboard implementation emphasizes transparency and readability over completeness and performance. It serves as an educational reference and validation backend, demonstrating the underlying principles of surface-code construction while sharing the same benchmarking interface as the Stim backend.
+This checkerboard implementation prioritises transparency and readability over completeness and performance, and serves as an educational reference and validation backend. More specifically, in terms of the code layout, the current implementation omits the outer (d-1)<sup>2</sup> stabilizers and therefore uses a simplified boundary structure. For logical error-rate estimation, the current implementation checks whether the inferred error chain runs from one boundary to the opposite boundary. A more robust approach would be to explicitly construct the full path as a set of edges between stabilizers and determine whether the complete path connects opposite boundaries.
 
-Because the implementation follows the standard planar checkerboard stabilizer layout, it is benchmarked against Stim's canonical unrotated surface-code implementation, which provides the closest production reference.
+Because the implementation follows the standard planar checkerboard stabilizer layout, it is benchmarked against Stim's canonical rotated surface-code implementation, which provides the closest production reference. Experimental results showed a higher logical error rate for the checkerboard implementation, while sharing the same general behaviour, such as distance scaling.
 
 ### Qiskit
 
-The Qiskit backend is a lightweight reference implementation of a surface-code-inspired memory experiment using Qiskit and Aer. This implementation constructs simplified syndrome-extraction circuits with configurable depolarising and readout noise before performing MWPM decoding using the reference NetworkX decoder.
+The Qiskit backend is a lightweight reference implementation of a distance-3 Surface Code using Qiskit and Aer. This implementation constructs simplified syndrome-extraction circuits with configurable depolarising and readout noise before performing MWPM decoding using the reference NetworkX decoder.
 
-The implementation is intended for demonstration and comparison, it illustrates how quantum error-correction experiments can be expressed using the Qiskit circuit model.
+The implementation is intended for demonstration and comparison. It illustrates how quantum circuits can be simulated and how error-correction experiments can be expressed using the Qiskit.
 
 ---
 
@@ -219,7 +218,7 @@ The framework currently provides the following benchmark suites.
 | Threshold estimation | Stim | Estimates the surface-code threshold from curve crossings |
 | Runtime benchmarking | Stim | Measures simulation runtime as a function of code distance |
 | Lattice comparison | Stim | Compares rotated and unrotated surface-code implementations |
-| Backend comparison | Stim (unrotated) + Checkerboard | Compares the Stim backend against the checkerboard reference implementation |
+| Backend comparison | Stim (rotated) + Checkerboard | Compares the Stim backend against the checkerboard reference implementation |
 | Decoder comparison | Qiskit | Compares single-round and space-time decoding strategies |
 
 ---
@@ -230,7 +229,7 @@ The framework includes reproducible experiments for evaluating the performance a
 
 ### Threshold Estimation
 
-Threshold experiments estimate the logical error threshold by identifying the crossing point of logical failure-rate curves for increasing code distances.
+Threshold experiments compare logical failure rates across increasing code distances and identify where the curves cross, providing an estimate of the physical error rate at which increasing the code distance begins to reduce logical errors.
 
 <p align="center">
   <img src="docs/images/threshold.png"
@@ -242,7 +241,7 @@ Threshold experiments estimate the logical error threshold by identifying the cr
 
 ### Distance Scaling
 
-Distance-scaling experiments demonstrate the suppression of logical errors below the threshold by comparing logical failure rates across multiple code distances.
+Distance-scaling experiments demonstrate the suppression of logical errors below the threshold by comparing logical failure rates across increasing code distances.
 
 <p align="center">
   <img src="docs/images/distance_scaling.png"
@@ -254,7 +253,7 @@ Distance-scaling experiments demonstrate the suppression of logical errors below
 
 ### Runtime Benchmarking
 
-Runtime benchmarks measure the computational cost of logical-memory simulations as a function of code distance for both rotated and unrotated Stim surface codes.
+Runtime benchmarks measure the computational cost of logical-memory simulations as a function of code distance for both rotated and unrotated Stim surface codes. The lower runtime observed for rotated surface codes is consistent with their simpler layout and reduced ancilla count, which may contribute to lower computational cost.
 
 <p align="center">
   <img src="docs/images/runtime.png"
@@ -266,7 +265,7 @@ Runtime benchmarks measure the computational cost of logical-memory simulations 
 
 ### Lattice Comparison
 
-The framework supports direct comparison of rotated and unrotated surface-code implementations under identical noise models and decoding settings.
+The framework supports direct comparison of rotated and unrotated surface-code implementations under identical noise models and decoding settings. Unrotated surface codes show slightly lower logical failure rates across most tested physical error rates.
 
 <p align="center">
   <img src="docs/images/lattice_comparison.png"
@@ -282,7 +281,6 @@ The modular architecture is designed to make the framework straightforward to ex
 
 - additional decoding algorithms (e.g. Union-Find, belief propagation)
 - correlated and biased noise models
-- circuit-level simulations
 - additional simulation backends
 
 ---
