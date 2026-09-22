@@ -25,23 +25,21 @@ flowchart TD
     B --> C2[Checkerboard Reference]
     B --> C3[Qiskit Reference]
 
-    C1 --> D[Detector Error Models]
+    C1 --> D[MWPM Decoders]
     C2 --> D
     C3 --> D
 
-    D --> E[MWPM Decoders]
+    D --> D1[PyMatching]
+    D --> D2[NetworkX]
 
-    E --> F1[PyMatching]
-    E --> F2[NetworkX]
+    D1 --> E[Monte Carlo Simulation]
+    D2 --> E
 
-    F1 --> G[Monte Carlo Simulation]
-    F2 --> G
+    E --> F[Analysis]
 
-    G --> H[Analysis]
+    F --> G[Visualization]
 
-    H --> I[Visualization]
-
-    I --> J[Figures & CSV Results]
+    G --> H[Figures & CSV Results]
 
 ```
 
