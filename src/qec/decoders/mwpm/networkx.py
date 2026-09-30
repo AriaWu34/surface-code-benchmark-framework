@@ -240,7 +240,16 @@ def mwpm_3d(
         weight="weight",
     )
 
-    return list(matching) if matching is not None else []
+    if not matching:
+        return []
+
+    pairs = []
+
+    for e in matching:
+        u, v = tuple(e)
+        pairs.append((u, v))
+
+    return pairs
 
 
 # Decoding pipeline

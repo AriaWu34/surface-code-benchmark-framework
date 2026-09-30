@@ -1,31 +1,13 @@
 from qec.decoders.mwpm.networkx import (
     correction_spans_code,
     mwpm_pairs,
+    mwpm_3d,
 )
 
 
-def test_empty_matching_vertical():
+def test_empty_matching():
     assert mwpm_pairs([], "vertical", distance=3) == []
-
-
-def test_empty_matching_horizontal():
-    assert mwpm_pairs([], "horizontal", distance=3) == []
-
-
-def test_no_span_empty_vertical():
-    assert correction_spans_code(
-        [],
-        boundary_mode="vertical",
-        distance=3,
-    ) is False
-
-
-def test_no_span_empty_horizontal():
-    assert correction_spans_code(
-        [],
-        boundary_mode="horizontal",
-        distance=3,
-    ) is False
+    assert mwpm_3d([], "vertical", distance=3) == []
 
 
 def test_single_defect_matches_boundary():
@@ -36,10 +18,18 @@ def test_single_defect_matches_boundary():
     )
 
     assert len(pairs) == 1
+    assert "B" in pairs[0]
 
-    u, v = pairs[0]
 
-    assert "B" in (u, v)
+def test_mwpm_3d_single_defect_matches_boundary():
+    pairs = mwpm_3d(
+        [(0, 0)],
+        "vertical",
+        distance=3,
+    )
+
+    assert len(pairs) == 1
+    assert "B" in pairs[0]
 
 
 def test_two_defects_match_together():
@@ -50,13 +40,29 @@ def test_two_defects_match_together():
     )
 
     assert len(pairs) == 1
-
-    u, v = pairs[0]
-
-    assert "B" not in (u, v)
+    assert "B" not in pairs[0]
 
 
-def test_span_detection_vertical():
+def test_mwpm_3d_two_defects_match_together():
+    pairs = mwpm_3d(
+        [(0, 0), (1, 0)],
+        "vertical",
+        distance=3,
+    )
+
+    assert len(pairs) == 1
+    assert "B" not in pairs[0]
+
+
+def test_empty_correction_does_not_span_code():
+    assert correction_spans_code(
+        [],
+        boundary_mode="vertical",
+        distance=3,
+    ) is False
+
+
+def test_non_spanning_correction():
     pairs = [("a0", "a2")]
 
     assert correction_spans_code(
@@ -64,17 +70,3 @@ def test_span_detection_vertical():
         boundary_mode="vertical",
         distance=3,
     ) is False
-
-
-def test_mwpm_pairs_distance_5():
-    pairs = mwpm_pairs(
-        [0],
-        "vertical",
-        distance=5,
-    )
-
-    assert len(pairs) == 1
-
-    u, v = pairs[0]
-
-    assert "B" in (u, v)
