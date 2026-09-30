@@ -171,7 +171,7 @@ def test_plot_backend_comparison(tmp_path):
 
     plot_backend_comparison(
         physical_error_rates=x,
-        stim_unrotated_rates=[0.01, 0.02, 0.03],
+        stim_rotated_rates=[0.01, 0.02, 0.03],
         checkerboard_rates=[0.015, 0.025, 0.04],
         distance=3,
         basis="Z",

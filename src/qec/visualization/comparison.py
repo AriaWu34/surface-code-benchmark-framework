@@ -127,7 +127,7 @@ def plot_lattice_comparison(
 
 def plot_backend_comparison(
     physical_error_rates,
-    stim_unrotated_rates,
+    stim_rotated_rates,
     checkerboard_rates,
     distance: int,
     basis: str,
@@ -136,17 +136,17 @@ def plot_backend_comparison(
     """
     Compare logical failure rates for the checkerboard
     reference implementation and Stim's canonical
-    unrotated surface-code implementation.
+    rotated surface-code implementation.
     """
 
     plt.figure(figsize=(6, 4))
 
     plt.plot(
         physical_error_rates,
-        stim_unrotated_rates,
+        stim_rotated_rates,
         marker="o",
         linewidth=2,
-        label="Stim (unrotated)",
+        label="Stim (rotated)",
     )
 
     plt.plot(

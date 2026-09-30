@@ -1,11 +1,6 @@
 """
 Compare the checkerboard reference implementation against
-Stim's canonical unrotated surface code.
-
-The checkerboard implementation follows the standard planar
-checkerboard stabilizer layout and is therefore benchmarked
-against Stim's unrotated implementation rather than the
-rotated surface code.
+Stim's rotated surface code.
 
 Usage:
     python experiments/reference/compare_stim_checkerboard.py
@@ -77,7 +72,7 @@ def run_experiment(
     """
 
     stim = StimBackend(
-        lattice="unrotated",
+        lattice="rotated",
     )
 
     checkerboard = CheckerboardBackend()
@@ -87,7 +82,7 @@ def run_experiment(
     rows = []
 
     backends = {
-        "stim_unrotated": stim,
+        "stim_rotated": stim,
         "checkerboard": checkerboard,
     }
 
@@ -211,8 +206,8 @@ def main() -> None:
 
             plot_backend_comparison(
                 physical_error_rates=PHYSICAL_ERROR_RATES,
-                stim_unrotated_rates=comparison[
-                    "stim_unrotated"
+                stim_rotated_rates=comparison[
+                    "stim_rotated"
                 ],
                 checkerboard_rates=comparison[
                     "checkerboard"
