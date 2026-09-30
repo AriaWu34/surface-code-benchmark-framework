@@ -169,24 +169,17 @@ class CircuitMixin:
         Measure data qubits in the memory basis.
         """
 
-        if self.memory_basis == "Z":
-
-            circuit.append(
-                "M",
-                self.data_indices,
-            )
-
-        elif self.memory_basis == "X":
+        if self.memory_basis == "X":
 
             circuit.append(
                 "H",
                 self.data_indices,
             )
 
-            circuit.append(
-                "M",
-                self.data_indices,
-            )
+        circuit.append(
+            "M",
+            self.data_indices,
+        )
 
     def add_final_data_measurements(
         self,

@@ -69,20 +69,20 @@ def k_rounds_surface_code(distance: int = 3, k: int = 1) -> QuantumCircuit:
         # --- X stabilizers: ancilla -> data (H, CNOTs, H, measure), reset ancilla
         for s, plaq in enumerate(plaqs):
             a = x_start + s
-            qc.reset(qreg[a])
-            qc.h(qreg[a])
+            qc.reset(a)
+            qc.h(a)
             for (row, col) in plaq:
-                qc.cx(qreg[a], qreg[d_idx(row, col, distance)])
-            qc.h(qreg[a])
-            qc.measure(qreg[a], syn[s])  # X syndrome bit s
+                qc.cx(a, d_idx(row, col, distance))
+            qc.h(a)
+            qc.measure(a, syn[s])  # X syndrome bit s
             # (reset done above; no reset after measure needed)
 
         # --- Z stabilizers: data -> ancilla (CNOTs), measure, reset ancilla
         for s, plaq in enumerate(plaqs):
             a = z_start + s
-            qc.reset(qreg[a])
+            qc.reset(a)
             for (row, col) in plaq:
-                qc.cx(qreg[d_idx(row, col, distance)], qreg[a])
-            qc.measure(qreg[a], syn[n_x + s])  # Z syndrome bit s
+                qc.cx(d_idx(row, col, distance), a)
+            qc.measure(a, syn[n_x + s])  # Z syndrome bit s
 
     return qc
